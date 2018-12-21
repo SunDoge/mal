@@ -1,10 +1,10 @@
 function reader_read_string(token,    v, r)
 {
 	token = substr(token, 1, length(token) - 1)
-	gsub(/\\\\/, "\u029e", token)
+	gsub(/\\\\/, "\xf7", token)
 	gsub(/\\"/, "\"", token)
 	gsub(/\\n/, "\n", token)
-	gsub("\u029e", "\\", token)
+	gsub("\xf7", "\\", token)
 	return token
 }
 
@@ -46,7 +46,7 @@ function reader_read_list(reader, type, end,    idx, len, ret)
 	}
 	types_heap[idx]["len"] = len
 	types_release(type idx)
-	return "!\"expect " end ", got EOF"
+	return "!\"expected '" end "', got EOF"
 }
 
 function reader_read_hash(reader,    idx, key, val)
@@ -79,7 +79,7 @@ function reader_read_hash(reader,    idx, key, val)
 		types_heap[idx][key] = val
 	}
 	types_release("{" idx)
-	return "!\"expect }, got EOF"
+	return "!\"expected '}', got EOF"
 }
 
 function reader_read_abbrev(reader, symbol,    val, idx)

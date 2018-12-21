@@ -6,7 +6,7 @@
 
 Mal is a Clojure inspired Lisp interpreter.
 
-Mal is implemented in 73 languages:
+Mal is implemented in 74 languages:
 
 * Ada
 * GNU awk
@@ -80,6 +80,7 @@ Mal is implemented in 73 languages:
 * VHDL
 * Vimscript
 * Visual Basic.NET
+* WebAssembly (wasm)
 * Yorick
 
 
@@ -113,9 +114,11 @@ Unlocked: A Better Path to Language Learning".
 [Video](https://www.youtube.com/watch?v=lgyOAiRtZGw),
 [Slides](http://kanaka.github.io/midwest.io.mal/). More recently
 Joel gave a presentation on "Make Your Own Lisp Interpreter in
-10 Incremental Steps" at LambdaConf 2016: [Part
-1](https://www.youtube.com/watch?v=jVhupfthTEk), [Part
-2](https://www.youtube.com/watch?v=X5OQBMGpaTU),
+10 Incremental Steps" at LambdaConf 2016:
+[Part 1](https://www.youtube.com/watch?v=jVhupfthTEk),
+[Part 2](https://www.youtube.com/watch?v=X5OQBMGpaTU),
+[Part 3](https://www.youtube.com/watch?v=6mARZzGgX4U),
+[Part 4](https://www.youtube.com/watch?v=dCO1SYR5kDU),
 [Slides](http://kanaka.github.io/lambdaconf/).
 
 If you are interesting in creating a mal implementation (or just
@@ -259,7 +262,7 @@ cd chuck
 
 The implementation has been tested with SBCL, CCL, CMUCL, GNU CLISP, ECL and
 Allegro CL on Ubuntu 16.04 and Ubuntu 12.04, see
-the [README][common-lisp/README.org] for more details. Provided you have the
+the [README](common-lisp/README.org) for more details. Provided you have the
 dependencies mentioned installed, do the following to run the implementation
 
 ```
@@ -290,7 +293,7 @@ coffee ./stepX_YYY
 
 *The Crystal implementation of mal was created by [Linda_pp](https://github.com/rhysd)*
 
-The Crystal implementation of mal has been tested with Crystal 0.18.4.
+The Crystal implementation of mal has been tested with Crystal 0.26.1.
 
 ```
 cd crystal
@@ -480,7 +483,7 @@ guile -L ./ stepX_YYY.scm
 The Smalltalk implementation of mal has been tested with GNU Smalltalk 3.2.91.
 
 ```
-cd gst
+cd gnu-smalltalk
 ./run
 ```
 
@@ -761,7 +764,7 @@ The Picolisp implementation requires libreadline and Picolisp 3.1.11
 or later.
 
 ```
-cd pil
+cd picolisp
 ./run
 ```
 
@@ -890,6 +893,11 @@ tool (cargo) to build.
 cd rust
 cargo run --release --bin stepX_YYY
 ```
+
+Alternative out-of-tee Rust implementations:
+
+* [by Tim Morgan](https://github.com/seven1m/mal-rust).
+* [by vi](https://github.com/vi/mal-rust-vi) - using [Pest](https://pest.rs/) grammar, not using typical Mal infrastructure (cargo-ized steps and built-in converted tests).
 
 ### Scala ###
 
@@ -1032,6 +1040,19 @@ required to build and run the VB.NET implementation.
 cd vb
 make
 mono ./stepX_YYY.exe
+```
+
+### WebAssembly (wasm) ###
+
+The WebAssembly implementation is written in
+[Wam](https://github.com/kanaka/wam) (WebAssembly Macro language) and
+runs under the [wac/wace](https://github.com/kanaka/wac) WebAssembly
+runtime.
+
+```
+cd wasm
+make
+wace ./stepX_YYY.wasm
 ```
 
 ### Yorick
@@ -1217,6 +1238,10 @@ make "docker-build^IMPL"
   out. These dependencies are download to dot-files in the /mal
   directory so they will persist between runs.
 
+## Projects using mal
+
+ * [malc](https://github.com/dubek/malc) - Mal (Make A Lisp) compiler. Compiles a Mal program to LLVM assembly language, then binary.
+ * [frock](https://github.com/chr15m/frock) - Clojure-flavoured PHP. Uses mal/php to run programs.
 
 ## License
 
